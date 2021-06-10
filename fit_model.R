@@ -66,7 +66,7 @@ model <- stan(file = 'stan/bvp_goals_no_corr.stan',
               data = stan_data, 
               seed = 73097,
               chains = 3, 
-              iter = 7000, 
+              iter = 5000, 
               warmup = 2000, 
               control = list(adapt_delta = 0.95))
 write_rds(model, 'model_objects/model.rds')

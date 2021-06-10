@@ -19,4 +19,5 @@ Flag figures courtesy of [Flaticon](https://www.flaticon.com/).
 
 
 
-
+#### Pre-Tournament Predictions
+![sim-results](figures/euro_2021.png)

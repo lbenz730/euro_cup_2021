@@ -283,3 +283,13 @@ sim_ko_round <- function(df) {
   
   return(df)
 }
+
+### W/D/L given expectations
+match_probs <- function(lambda_1, lambda_2) {
+  max_goals <- 10
+  score_matrix <- dpois(0:max_goals, lambda_1) %o% dpois(0:max_goals, lambda_2)
+  tie_prob <- sum(diag(score_matrix))
+  win_prob <- sum(score_matrix[lower.tri(score_matrix)])
+  loss_prob <- sum(score_matrix[upper.tri(score_matrix)])
+  return(list('win' = win_prob, 'draw' = tie_prob, 'loss' = loss_prob))
+}

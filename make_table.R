@@ -2,8 +2,8 @@ library(tidyverse)
 library(gt)
 
 df_stats <- 
-  read_csv('ratings.csv') %>% select(team, alpha, delta, net_rating) %>% 
-  inner_join(  read_csv('sim_results.csv')) %>% 
+  read_csv('predictions/ratings.csv') %>% select(team, alpha, delta, net_rating) %>% 
+  inner_join(  read_csv('predictions/sim_results.csv')) %>% 
   arrange(desc(champ), desc(finals),
           desc(sf), desc(qf), desc(r16)) %>% 
   mutate('logo' = paste0('flags/', team, '.png')) %>% 
@@ -14,8 +14,11 @@ make_table <- function(Group = 'all') {
     df <- df_stats
     subtitle <- ''
   } else {
-    df <- filter(df_stats, group == Group)
-    subtitle <- paste('Group:', Group)
+    df <- 
+      df_stats %>% 
+      filter(group == Group) %>% 
+      arrange(desc(r16))
+    subtitle <- paste('Group', Group)
   }
   
   df %>% 

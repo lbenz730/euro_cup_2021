@@ -7,7 +7,7 @@ options(mc.cores=parallel::detectCores())
 ### Read In International Soccer Scores
 ### We'll just use data from 2014 onwards
 df_scores <- 
-  read_csv('international_soccer_scores.csv') %>% 
+  read_csv('data/international_soccer_scores.csv') %>% 
   mutate('year' = year(date)) %>% 
   filter(year >= 2014)
 
@@ -84,4 +84,4 @@ df_ratings <-
   mutate('net_rating' = alpha + abs(delta)) %>% 
   arrange(desc(net_rating))
 
-write_csv(df_ratings, 'ratings.csv')
+write_csv(df_ratings, 'predictions/ratings.csv')

@@ -10,7 +10,7 @@ Modeling and simulation of the 2021 Euro Cup.
 
 * __run_sim.R:__ Run 10,000 simulations of the tournament
 * __helpers.R:__ Helper functions for sims.
-
+* __game_preds.R__ Save out predictions for indivdual games.
 
 #### Data
 Data (__internation_soccer_score.csv__) courtesy [Kaggle](https://www.kaggle.com/martj42/international-football-results-from-1872-to-2017).
@@ -20,4 +20,4 @@ Flag figures courtesy of [Flaticon](https://www.flaticon.com/).
 
 
 #### Pre-Tournament Predictions
-![sim-results](figures/euro_2021.png)
+![sim-results](figures/pre_euro.png)

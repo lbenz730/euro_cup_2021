@@ -11,9 +11,9 @@ neutral_field <- mean(posterior$neutral_field)
 mu <- mean(posterior$mu)
 
 ### Read in Ratings and Schedule
-df_ratings <- read_csv('ratings.csv')
+df_ratings <- read_csv('predictions/ratings.csv')
 schedule <- 
-  read_csv('schedule.csv') %>% 
+  read_csv('data/schedule.csv') %>% 
   mutate('date' = as.Date(date, '%m/%d/%y'))
 
 ### Expected Score for Each Game
@@ -21,7 +21,7 @@ preds  <- adorn_xg(schedule)
 
 ### WLD Probs
 preds <- bind_cols(preds, map2_dfr(preds$lambda_1, preds$lambda_2, ~as_tibble(match_probs(.x,.y))))
-write_csv(preds, 'game_predictions.csv')
+write_csv(preds, 'predictions/game_predictions.csv')
 
 df_preds <- 
   preds %>% 

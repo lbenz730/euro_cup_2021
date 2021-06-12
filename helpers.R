@@ -50,10 +50,12 @@ adorn_xg <- function(df) {
 ### Simulate Group Stage
 sim_group_stage <- function(df_group_stage) {
   ### Sim Each Game
-  df_group_stage$team1_score[is.na(df_group_stage$team1_score)] <- 
-    rpois(sum(is.na(df_group_stage$team1_score)), lambda = df_group_stage$lambda_1)
-  df_group_stage$team2_score[is.na(df_group_stage$team2_score)] <- 
-    rpois(sum(is.na(df_group_stage$team2_score)), lambda = df_group_stage$lambda_2)
+  ix1 <- is.na(df_group_stage$team1_score)
+  ix2 <- is.na(df_group_stage$team2_score)
+  df_group_stage$team1_score[ix1] <- 
+    rpois(sum(ix1), lambda = df_group_stage$lambda_1[ix1])
+  df_group_stage$team2_score[ix2] <- 
+    rpois(sum(ix2), lambda = df_group_stage$lambda_2[ix2])
   
   ### Aggregate Results
   df_results <- 
@@ -247,7 +249,7 @@ build_knockout_bracket <- function(group_stage_results) {
                   third_place_groups == 'BDEF' ~ b[3],
                   third_place_groups == 'CDEF' ~ c[3])
   
-  return(tibble('team1' = c(b[1], a[1], f[1], d[2], e[1], d[1], c[1], a[1]),
+  return(tibble('team1' = c(b[1], a[1], f[1], d[2], e[1], d[1], c[1], a[2]),
                 'team2' = c(t1, c[2], t2, e[2], t3, f[2], t4, b[2])))
   
   

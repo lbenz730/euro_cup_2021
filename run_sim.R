@@ -9,6 +9,8 @@ source('helpers.R')
 ### Simulation Parameters
 n_sims <- 10000
 set.seed(12345)
+run_date <- case_when(lubridate::hour(Sys.time()) <= 9 ~as.Date(Sys.Date()), 
+                      T ~ as.Date(Sys.Date() + 1))
 
 ### Coefficients
 posterior <- read_rds('model_objects/posterior.rds')
@@ -17,9 +19,9 @@ neutral_field <- mean(posterior$neutral_field)
 mu <- mean(posterior$mu)
 
 ### Read in Ratings and Schedule
-df_ratings <- read_csv('ratings.csv')
+df_ratings <- read_csv('predictions/ratings.csv')
 schedule <- 
-  read_csv('schedule.csv') %>% 
+  read_csv('data/schedule.csv') %>% 
   mutate('date' = as.Date(date, '%m/%d/%y'))
 
 ### Expected Score for Each Game
@@ -107,5 +109,13 @@ df_stats <-
   ungroup()
 
 ### Save Results
-write_csv(df_stats, 'sim_results.csv')
+write_csv(df_stats, 'predictions/sim_results.csv')
+
+### Track History
+history <- 
+  read_csv('predictions/history.csv') %>% 
+  filter(date != run_date) %>% 
+  bind_rows(df_stats %>% mutate('date' = run_date)) %>% 
+  arrange(date)
+write_csv(history, 'predictions/history.csv')
 

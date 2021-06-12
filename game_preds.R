@@ -13,8 +13,7 @@ mu <- mean(posterior$mu)
 ### Read in Ratings and Schedule
 df_ratings <- read_csv('predictions/ratings.csv')
 schedule <- 
-  read_csv('data/schedule.csv') %>% 
-  mutate('date' = as.Date(date, '%m/%d/%y'))
+  read_csv('data/schedule.csv') 
 
 ### Expected Score for Each Game
 preds  <- adorn_xg(schedule)

@@ -7,8 +7,8 @@ get_scores <- function(date) {
   url <- paste0('https://www.espn.com/soccer/fixtures/_/date/', date_, '/league/uefa.euro')
   scores <- readHTMLTable(getURL(url))[[1]]
   df <- tibble('date' = as.Date(date, '%Y%m%d'),
-               'team1' = gsub( '\\s.*', '', scores[,1]),
-               'team2' = gsub( '\\s.*', '', scores[,2]),
+               'team1' = gsub( '\\s[A-Z]+\\d+.*$', '', scores[,1]),
+               'team2' = gsub( '\\s[A-Z]+$', '', scores[,2]),
                'team1_score' = as.numeric(str_extract(scores[,1], '\\d+') ),
                'team2_score' = as.numeric(str_extract(scores[,1], '\\d+$') ))
   

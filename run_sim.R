@@ -9,7 +9,7 @@ source('helpers.R')
 ### Simulation Parameters
 n_sims <- 10000
 set.seed(12345)
-run_date <- case_when(lubridate::hour(Sys.time()) <= 9 ~as.Date(Sys.Date()), 
+run_date <- case_when(lubridate::hour(Sys.time()) <= 9 ~as.Date(Sys.Date()),
                       T ~ as.Date(Sys.Date() + 1))
 
 ### Coefficients

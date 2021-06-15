@@ -47,3 +47,4 @@ model {
    target += poisson_lpmf(a_goals[g] | lambda2[g]) * weights[g];
   }
 }
+

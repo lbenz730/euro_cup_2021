@@ -29,8 +29,8 @@ date,team1,team2,location,group,ko_round,team1_score,team2_score
 2021-06-19,Spain,Poland,Spain,E,NA,NA,NA
 2021-06-23,Slovakia,Spain,Spain,E,NA,NA,NA
 2021-06-23,Sweden,Poland,Russia,E,NA,NA,NA
-2021-06-15,Hungary,Portugal,Hungary,F,NA,NA,NA
-2021-06-15,France,Germany,Germany,F,NA,NA,NA
+2021-06-15,Hungary,Portugal,Hungary,F,NA,0,3
+2021-06-15,France,Germany,Germany,F,NA,1,0
 2021-06-19,Hungary,France,Hungary,F,NA,NA,NA
 2021-06-19,Portugal,Germany,Germany,F,NA,NA,NA
 2021-06-23,Portugal,France,Hungary,F,NA,NA,NA

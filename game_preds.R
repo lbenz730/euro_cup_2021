@@ -20,8 +20,16 @@ preds  <- adorn_xg(schedule)
 
 ### WLD Probs
 preds <- bind_cols(preds, map2_dfr(preds$lambda_1, preds$lambda_2, ~as_tibble(match_probs(.x,.y))))
-write_csv(preds, 'predictions/game_predictions.csv')
+preds_old <- read_csv('predictions/game_predictions.csv')
+preds_old <- 
+  preds_old %>% 
+  filter(date < Sys.Date()) %>% 
+  select(lambda_1, lambda_2, win, draw, loss)
+preds[preds$date < Sys.Date(), c('lambda_1', 'lambda_2', 'win', 'draw', 'loss')] <- 
+  preds_old
+write_csv('predictions/game_predictions.csv')
 
+### Graphics
 df_preds <- 
   preds %>% 
   filter(!is.na(group)) %>% 
@@ -30,7 +38,8 @@ df_preds <-
   mutate('logo2' = paste0('flags/', team2, '.png'))  %>% 
   select(date, team1, logo1, team2, logo2, group, lambda_1, lambda_2, win, draw, loss)
 
-t <-   
+
+t1 <-   
   df_preds %>% 
   slice(1:12) %>% 
   gt() %>% 
@@ -120,4 +129,189 @@ t <-
               column_labels.font.weight = 'bold'
   )  
 
-gtsave(t, 'figures/matchweek1.png')
+gtsave(t1, 'figures/matchweek1.png')
+
+t2 <-   
+  df_preds %>% 
+  slice(13:24) %>% 
+  gt() %>% 
+  cols_align('center') %>% 
+  
+  ### Round Numbers
+  fmt_number(columns = vars(lambda_1, lambda_2), decimals = 2, sep_mark = '') %>% 
+  fmt_percent(columns = vars(win, loss, draw), decimals = 0, sep_mark = '') %>% 
+  
+  ### Colors
+  data_color(columns = vars(lambda_1, lambda_2),
+             colors = scales::col_numeric(palette = ggsci::rgb_material('amber', n = 100), domain = range(df_preds[, c('lambda_1', 'lambda_2')]))) %>% 
+  data_color(columns = vars(win, loss, draw),
+             colors = scales::col_numeric(palette = ggsci::rgb_material('amber', n = 100), domain = c(0, 1))) %>% 
+  ### Borders
+  tab_style(
+    style = list(
+      cell_borders(
+        sides = "bottom",
+        color = "black",
+        weight = px(3)
+      )
+    ),
+    locations = list(
+      cells_column_labels(
+        columns = gt::everything()
+      )
+    )
+  ) %>% 
+  tab_style(
+    style = list(
+      cell_borders(
+        sides = "right",
+        color = "black",
+        weight = px(3)
+      )
+    ),
+    locations = list(
+      cells_body(
+        columns = vars(group, lambda_2)
+      )
+    )
+  ) %>% 
+  
+  tab_spanner(label = 'Expected Goals', columns = c('lambda_1', 'lambda_2')) %>% 
+  tab_spanner(label = 'Match Outcome Probabilities', columns = c('win', 'draw', 'loss')) %>% 
+  
+  ### Logos
+  text_transform(
+    locations = cells_body(columns = "logo1"), 
+    fn = function(x) map_chr(x, ~{
+      local_image(filename =  as.character(.x), height = 30)
+    })
+  ) %>% 
+  text_transform(
+    locations = cells_body(columns = "logo2"), 
+    fn = function(x) map_chr(x, ~{
+      local_image(filename =  as.character(.x), height = 30)
+    })
+  ) %>% 
+  
+  ### Names
+  cols_label(
+    date = 'Date',
+    team1 = 'Team 1',
+    logo1 = '',
+    team2 = 'Team 2',
+    logo2 = '',
+    group = 'Group',
+    'lambda_1' = 'Team 1', 
+    'lambda_2' = 'Team 2',
+    'win' = 'Team 1',
+    'draw' = 'Draw',
+    'loss' = 'Team 2'
+    
+  ) %>% 
+  tab_source_note("Luke Benz (@recspecs730)") %>%
+  tab_header(
+    title = 'Euro Cup 2021 Game Predictions',
+    subtitle = 'Matchweek 2'
+  ) %>% 
+  tab_options(column_labels.font.size = 20,
+              heading.title.font.size = 40,
+              heading.subtitle.font.size = 30,
+              heading.title.font.weight = 'bold',
+              heading.subtitle.font.weight = 'bold',
+              column_labels.font.weight = 'bold'
+  )  
+
+gtsave(t2, 'figures/matchweek2.png')
+
+
+t3 <-   
+  df_preds %>% 
+  slice(25:36) %>% 
+  gt() %>% 
+  cols_align('center') %>% 
+  
+  ### Round Numbers
+  fmt_number(columns = vars(lambda_1, lambda_2), decimals = 2, sep_mark = '') %>% 
+  fmt_percent(columns = vars(win, loss, draw), decimals = 0, sep_mark = '') %>% 
+  
+  ### Colors
+  data_color(columns = vars(lambda_1, lambda_2),
+             colors = scales::col_numeric(palette = ggsci::rgb_material('amber', n = 100), domain = range(df_preds[, c('lambda_1', 'lambda_2')]))) %>% 
+  data_color(columns = vars(win, loss, draw),
+             colors = scales::col_numeric(palette = ggsci::rgb_material('amber', n = 100), domain = c(0, 1))) %>% 
+  ### Borders
+  tab_style(
+    style = list(
+      cell_borders(
+        sides = "bottom",
+        color = "black",
+        weight = px(3)
+      )
+    ),
+    locations = list(
+      cells_column_labels(
+        columns = gt::everything()
+      )
+    )
+  ) %>% 
+  tab_style(
+    style = list(
+      cell_borders(
+        sides = "right",
+        color = "black",
+        weight = px(3)
+      )
+    ),
+    locations = list(
+      cells_body(
+        columns = vars(group, lambda_2)
+      )
+    )
+  ) %>% 
+  
+  tab_spanner(label = 'Expected Goals', columns = c('lambda_1', 'lambda_2')) %>% 
+  tab_spanner(label = 'Match Outcome Probabilities', columns = c('win', 'draw', 'loss')) %>% 
+  
+  ### Logos
+  text_transform(
+    locations = cells_body(columns = "logo1"), 
+    fn = function(x) map_chr(x, ~{
+      local_image(filename =  as.character(.x), height = 30)
+    })
+  ) %>% 
+  text_transform(
+    locations = cells_body(columns = "logo2"), 
+    fn = function(x) map_chr(x, ~{
+      local_image(filename =  as.character(.x), height = 30)
+    })
+  ) %>% 
+  
+  ### Names
+  cols_label(
+    date = 'Date',
+    team1 = 'Team 1',
+    logo1 = '',
+    team2 = 'Team 2',
+    logo2 = '',
+    group = 'Group',
+    'lambda_1' = 'Team 1', 
+    'lambda_2' = 'Team 2',
+    'win' = 'Team 1',
+    'draw' = 'Draw',
+    'loss' = 'Team 2'
+    
+  ) %>% 
+  tab_source_note("Luke Benz (@recspecs730)") %>%
+  tab_header(
+    title = 'Euro Cup 2021 Game Predictions',
+    subtitle = 'Matchweek 3'
+  ) %>% 
+  tab_options(column_labels.font.size = 20,
+              heading.title.font.size = 40,
+              heading.subtitle.font.size = 30,
+              heading.title.font.weight = 'bold',
+              heading.subtitle.font.weight = 'bold',
+              column_labels.font.weight = 'bold'
+  )  
+
+gtsave(t3, 'figures/matchweek3.png')

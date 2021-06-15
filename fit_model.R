@@ -11,6 +11,18 @@ df_scores <-
   mutate('year' = year(date)) %>% 
   filter(year >= 2014)
 
+### Scores From Current Euro Tournament
+euro_2021 <- 
+  read_csv('data/schedule.csv') %>% 
+  mutate('neutral' = (team1 != location & team2 != location),
+         'tournament' = 'UEFA Euro') %>% 
+  mutate('home_team' = ifelse(team2 == location, team2, team1),
+         'away_team' = ifelse(team2 == location, team1, team2),
+         'home_score' = ifelse(team2 == location, team2_score, team1_score),
+         'away_score' = ifelse(team2 == location, team1_score, team2_score)) %>% 
+  select(date, home_team, away_team, home_score, away_score, neutral, tournament) %>% 
+  filter(!is.na(home_score))
+
 ### Filter out games for countries that don't play at least 20 games
 keep <- 
   df_scores %>% 
@@ -25,7 +37,8 @@ keep <-
 df_scores <- 
   df_scores %>% 
   semi_join(keep, by = c('home_team' = 'team')) %>% 
-  semi_join(keep, by = c('away_team' = 'team'))
+  semi_join(keep, by = c('away_team' = 'team')) %>% 
+  bind_rows(euro_2021)
 
 ### Team IDs
 team_ids <- team_codes(df_scores)

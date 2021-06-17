@@ -1,13 +1,13 @@
 date,team1,team2,location,group,ko_round,team1_score,team2_score
 2021-06-11,Italy,Turkey,Italy,A,NA,3,0
 2021-06-12,Wales,Switzerland,Azerbaijan,A,NA,1,1
-2021-06-16,Turkey,Wales,Azerbaijan,A,NA,NA,NA
-2021-06-16,Italy,Switzerland,Italy,A,NA,NA,NA
+2021-06-16,Turkey,Wales,Azerbaijan,A,NA,0,2
+2021-06-16,Italy,Switzerland,Italy,A,NA,3,0
 2021-06-20,Switzerland,Turkey,Azerbaijan,A,NA,NA,NA
 2021-06-20,Italy,Wales,Italy,A,NA,NA,NA
 2021-06-12,Denmark,Finland,Denmark,B,NA,0,1
 2021-06-12,Russia,Belgium,Russia,B,NA,0,3
-2021-06-16,Russia,Finland,Russia,B,NA,NA,NA
+2021-06-16,Russia,Finland,Russia,B,NA,1,0
 2021-06-17,Denmark,Belgium,Denmark,B,NA,NA,NA
 2021-06-21,Denmark,Russia,Denmark,B,NA,NA,NA
 2021-06-21,Finland,Belgium,Russia,B,NA,NA,NA

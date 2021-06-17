@@ -23,7 +23,7 @@ ggplot(history, aes(x = date, y = r16)) +
        title = 'Euro 2021',
        subtitle = 'Knockout Round Chances Over Time')
 
-ggsave('figures/r16.png', height = 9/1.2, width = 16/1.2)
+ggsave('figures/r16.png', height = 12/1.2, width = 16/1.2)
 
 ggplot(history, aes(x = date, y = qf)) +
   facet_wrap(~paste('Group', group)) +
@@ -35,7 +35,7 @@ ggplot(history, aes(x = date, y = qf)) +
        title = 'Euro 2021',
        subtitle = 'QF Chances Over Time')
 
-ggsave('figures/qf.png', height = 9/1.2, width = 16/1.2)
+ggsave('figures/qf.png', height = 12/1.2, width = 16/1.2)
 
 ggplot(history, aes(x = date, y = sf)) +
   facet_wrap(~paste('Group', group)) +
@@ -47,7 +47,7 @@ ggplot(history, aes(x = date, y = sf)) +
        title = 'Euro 2021',
        subtitle = 'SF Chances Over Time')
 
-ggsave('figures/sf.png', height = 9/1.2, width = 16/1.2)
+ggsave('figures/sf.png', height = 12/1.2, width = 16/1.2)
 
 ggplot(history, aes(x = date, y = finals)) +
   facet_wrap(~paste('Group', group)) +
@@ -59,7 +59,7 @@ ggplot(history, aes(x = date, y = finals)) +
        title = 'Euro 2021',
        subtitle = 'Finals Chances Over Time')
 
-ggsave('figures/finals.png', height = 9/1.2, width = 16/1.2)
+ggsave('figures/finals.png', height = 12/1.2, width = 16/1.2)
 
 
 ggplot(history, aes(x = date, y = champ)) +
@@ -72,5 +72,5 @@ ggplot(history, aes(x = date, y = champ)) +
        title = 'Euro 2021',
        subtitle = 'Title Chances Over Time')
 
-ggsave('figures/champ.png', height = 9/1.2, width = 16/1.2)
+ggsave('figures/champ.png', height = 12/1.2, width = 16/1.2)
 

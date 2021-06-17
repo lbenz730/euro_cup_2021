@@ -8,13 +8,13 @@ date,team1,team2,location,group,ko_round,team1_score,team2_score
 2021-06-12,Denmark,Finland,Denmark,B,NA,0,1
 2021-06-12,Russia,Belgium,Russia,B,NA,0,3
 2021-06-16,Russia,Finland,Russia,B,NA,1,0
-2021-06-17,Denmark,Belgium,Denmark,B,NA,NA,NA
+2021-06-17,Denmark,Belgium,Denmark,B,NA,1,2
 2021-06-21,Denmark,Russia,Denmark,B,NA,NA,NA
 2021-06-21,Finland,Belgium,Russia,B,NA,NA,NA
 2021-06-13,Austria,North Macedonia,Romania,C,NA,3,1
 2021-06-13,Netherlands,Ukraine,Netherlands,C,NA,3,2
-2021-06-17,Ukraine,North Macedonia,Romania,C,NA,NA,NA
-2021-06-17,Netherlands,Austria,Netherlands,C,NA,NA,NA
+2021-06-17,Ukraine,North Macedonia,Romania,C,NA,2,1
+2021-06-17,Netherlands,Austria,Netherlands,C,NA,2,0
 2021-06-21,Netherlands,North Macedonia,Netherlands,C,NA,NA,NA
 2021-06-21,Ukraine,Austria,Romania,C,NA,NA,NA
 2021-06-13,England,Croatia,England,D,NA,1,0

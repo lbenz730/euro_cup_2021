@@ -118,3 +118,13 @@ history <-
   arrange(date)
 write_csv(history, 'predictions/history.csv')
 
+### Third Place Tracking
+third_place <- 
+  map2_dfr(group_stage_results, 1:n_sims, ~mutate(.x, 'sim_id' = .y)) %>% 
+  filter(place == 3) %>% 
+  group_by(sim_id) %>% 
+  arrange(desc(points), desc(goal_diff), desc(goals_scored), desc(progress)) %>% 
+  ungroup()
+
+write_csv(third_place, 'predictions/third_place.csv')
+

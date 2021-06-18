@@ -19,13 +19,13 @@ date,team1,team2,location,group,ko_round,team1_score,team2_score
 2021-06-21,Ukraine,Austria,Romania,C,NA,NA,NA
 2021-06-13,England,Croatia,England,D,NA,1,0
 2021-06-14,Scotland,Czech Republic,Scotland,D,NA,0,2
-2021-06-18,Croatia,Czech Republic,Scotland,D,NA,NA,NA
-2021-06-18,England,Scotland,England,D,NA,NA,NA
+2021-06-18,Croatia,Czech Republic,Scotland,D,NA,1,1
+2021-06-18,England,Scotland,England,D,NA,0,0
 2021-06-22,Scotland,Croatia,Scotland,D,NA,NA,NA
 2021-06-22,England,Czech Republic,England,D,NA,NA,NA
 2021-06-14,Poland,Slovakia,Russia,E,NA,1,2
 2021-06-14,Spain,Sweden,Spain,E,NA,0,0
-2021-06-18,Sweden,Slovakia,Russia,E,NA,NA,NA
+2021-06-18,Sweden,Slovakia,Russia,E,NA,1,0
 2021-06-19,Spain,Poland,Spain,E,NA,NA,NA
 2021-06-23,Slovakia,Spain,Spain,E,NA,NA,NA
 2021-06-23,Sweden,Poland,Russia,E,NA,NA,NA

@@ -108,107 +108,110 @@ group_tiebreak <- function(standings, df_results) {
     group_standings <- filter(standings, group == g)
     group_results <- filter(df_results, group == g)
     
-    if(group_standings$points[1] == group_standings$points[3]) {
-      tiebreak_order <- 
-        group_results %>% 
-        filter(team %in% group_standings$team[1:3], opp %in% group_standings$team[1:3]) %>% 
-        group_by(group, team) %>% 
-        summarise('points' = 3 * sum(team_score > opp_score) + sum(team_score == opp_score),
-                  'goal_diff' = sum(team_score - opp_score),
-                  'goals_scored' = sum(team_score),
-                  'goals_allowed' = sum(opp_score)) %>% 
-        ungroup() %>% 
-        arrange(group, desc(points), desc(goal_diff), desc(goals_scored)) %>% 
-        group_by(group) %>% 
-        mutate('place' = 1:n()) %>% 
-        ungroup() %>% 
-        pull(team)
-      
-      ix <- map_dbl(1:3, ~which(group_standings$team == tiebreak_order[.x]))
-      group_standings$place[1:3] <- ix
-    } 
-    if((group_standings$points[1] != group_standings$points[3]) & 
-       (group_standings$points[1] == group_standings$points[2])) {
-      tiebreak_order <- 
-        group_results %>% 
-        filter(team %in% group_standings$team[1:2], opp %in% group_standings$team[1:2]) %>% 
-        group_by(group, team) %>% 
-        summarise('points' = 3 * sum(team_score > opp_score) + sum(team_score == opp_score),
-                  'goal_diff' = sum(team_score - opp_score),
-                  'goals_scored' = sum(team_score),
-                  'goals_allowed' = sum(opp_score)) %>% 
-        ungroup() %>% 
-        arrange(group, desc(points), desc(goal_diff), desc(goals_scored)) %>% 
-        group_by(group) %>% 
-        mutate('place' = 1:n()) %>% 
-        ungroup() %>% 
-        pull(team)
-      
-      ix <- map_dbl(1:2, ~which(group_standings$team == tiebreak_order[.x]))
-      group_standings$place[1:2] <- ix
-    } 
-    if(group_standings$points[2] == group_standings$points[4]) {
-      tiebreak_order <- 
-        group_results %>% 
-        filter(team %in% group_standings$team[2:4], opp %in% group_standings$team[2:4]) %>% 
-        group_by(group, team) %>% 
-        summarise('points' = 3 * sum(team_score > opp_score) + sum(team_score == opp_score),
-                  'goal_diff' = sum(team_score - opp_score),
-                  'goals_scored' = sum(team_score),
-                  'goals_allowed' = sum(opp_score)) %>% 
-        ungroup() %>% 
-        arrange(group, desc(points), desc(goal_diff), desc(goals_scored)) %>% 
-        group_by(group) %>% 
-        mutate('place' = 1:n()) %>% 
-        ungroup() %>% 
-        pull(team)
-      
-      ix <- map_dbl(1:3, ~which(group_standings$team == tiebreak_order[.x]))
-      group_standings$place[2:4] <- ix
+    if(group_standings$points[1] != group_standings$points[4]) {
+      if(group_standings$points[1] == group_standings$points[3]) {
+        tiebreak_order <- 
+          group_results %>% 
+          filter(team %in% group_standings$team[1:3], opp %in% group_standings$team[1:3]) %>% 
+          group_by(group, team) %>% 
+          summarise('points' = 3 * sum(team_score > opp_score) + sum(team_score == opp_score),
+                    'goal_diff' = sum(team_score - opp_score),
+                    'goals_scored' = sum(team_score),
+                    'goals_allowed' = sum(opp_score)) %>% 
+          ungroup() %>% 
+          arrange(group, desc(points), desc(goal_diff), desc(goals_scored)) %>% 
+          group_by(group) %>% 
+          mutate('place' = 1:n()) %>% 
+          ungroup() %>% 
+          pull(team)
+        
+        ix <- map_dbl(1:3, ~which(group_standings$team == tiebreak_order[.x]))
+        group_standings$place[1:3] <- ix
+      } 
+      if((group_standings$points[1] != group_standings$points[3]) & 
+         (group_standings$points[1] == group_standings$points[2])) {
+        tiebreak_order <- 
+          group_results %>% 
+          filter(team %in% group_standings$team[1:2], opp %in% group_standings$team[1:2]) %>% 
+          group_by(group, team) %>% 
+          summarise('points' = 3 * sum(team_score > opp_score) + sum(team_score == opp_score),
+                    'goal_diff' = sum(team_score - opp_score),
+                    'goals_scored' = sum(team_score),
+                    'goals_allowed' = sum(opp_score)) %>% 
+          ungroup() %>% 
+          arrange(group, desc(points), desc(goal_diff), desc(goals_scored)) %>% 
+          group_by(group) %>% 
+          mutate('place' = 1:n()) %>% 
+          ungroup() %>% 
+          pull(team)
+        
+        ix <- map_dbl(1:2, ~which(group_standings$team == tiebreak_order[.x]))
+        group_standings$place[1:2] <- ix
+      } 
+      if(group_standings$points[2] == group_standings$points[4]) {
+        tiebreak_order <- 
+          group_results %>% 
+          filter(team %in% group_standings$team[2:4], opp %in% group_standings$team[2:4]) %>% 
+          group_by(group, team) %>% 
+          summarise('points' = 3 * sum(team_score > opp_score) + sum(team_score == opp_score),
+                    'goal_diff' = sum(team_score - opp_score),
+                    'goals_scored' = sum(team_score),
+                    'goals_allowed' = sum(opp_score)) %>% 
+          ungroup() %>% 
+          arrange(group, desc(points), desc(goal_diff), desc(goals_scored)) %>% 
+          group_by(group) %>% 
+          mutate('place' = 1:n()) %>% 
+          ungroup() %>% 
+          pull(team)
+        
+        ix <- map_dbl(1:3, ~which(group_standings$team == tiebreak_order[.x]))
+        group_standings$place[2:4] <- ix
+      }
+      if((group_standings$points[2] != group_standings$points[4]) &
+         (group_standings$points[1] != group_standings$points[3]) &
+         (group_standings$points[2] == group_standings$points[3])) {
+        tiebreak_order <- 
+          group_results %>% 
+          filter(team %in% group_standings$team[2:3], opp %in% group_standings$team[2:3]) %>% 
+          group_by(group, team) %>% 
+          summarise('points' = 3 * sum(team_score > opp_score) + sum(team_score == opp_score),
+                    'goal_diff' = sum(team_score - opp_score),
+                    'goals_scored' = sum(team_score),
+                    'goals_allowed' = sum(opp_score)) %>% 
+          ungroup() %>% 
+          arrange(group, desc(points), desc(goal_diff), desc(goals_scored)) %>% 
+          group_by(group) %>% 
+          mutate('place' = 1:n()) %>% 
+          ungroup() %>% 
+          pull(team)
+        
+        ix <- map_dbl(1:2, ~which(group_standings$team == tiebreak_order[.x]))
+        group_standings$place[2:3] <- ix
+      }
+      if((group_standings$points[2] != group_standings$points[4]) &
+         (group_standings$points[3] == group_standings$points[4])) {
+        tiebreak_order <- 
+          group_results %>% 
+          filter(team %in% group_standings$team[3:4], opp %in% group_standings$team[3:4]) %>% 
+          group_by(group, team) %>% 
+          summarise('points' = 3 * sum(team_score > opp_score) + sum(team_score == opp_score),
+                    'goal_diff' = sum(team_score - opp_score),
+                    'goals_scored' = sum(team_score),
+                    'goals_allowed' = sum(opp_score)) %>% 
+          ungroup() %>% 
+          arrange(group, desc(points), desc(goal_diff), desc(goals_scored)) %>% 
+          group_by(group) %>% 
+          mutate('place' = 1:n()) %>% 
+          ungroup() %>% 
+          pull(team)
+        
+        ix <- map_dbl(1:2, ~which(group_standings$team == tiebreak_order[.x]))
+        group_standings$place[3:4] <- ix
+      }
     }
-    if((group_standings$points[2] != group_standings$points[4]) &
-       (group_standings$points[2] == group_standings$points[3])) {
-      tiebreak_order <- 
-        group_results %>% 
-        filter(team %in% group_standings$team[2:3], opp %in% group_standings$team[2:3]) %>% 
-        group_by(group, team) %>% 
-        summarise('points' = 3 * sum(team_score > opp_score) + sum(team_score == opp_score),
-                  'goal_diff' = sum(team_score - opp_score),
-                  'goals_scored' = sum(team_score),
-                  'goals_allowed' = sum(opp_score)) %>% 
-        ungroup() %>% 
-        arrange(group, desc(points), desc(goal_diff), desc(goals_scored)) %>% 
-        group_by(group) %>% 
-        mutate('place' = 1:n()) %>% 
-        ungroup() %>% 
-        pull(team)
-      
-      ix <- map_dbl(1:2, ~which(group_standings$team == tiebreak_order[.x]))
-      group_standings$place[2:3] <- ix
-    }
-    if((group_standings$points[2] != group_standings$points[4]) &
-       (group_standings$points[3] == group_standings$points[4])) {
-      tiebreak_order <- 
-        group_results %>% 
-        filter(team %in% group_standings$team[3:4], opp %in% group_standings$team[3:4]) %>% 
-        group_by(group, team) %>% 
-        summarise('points' = 3 * sum(team_score > opp_score) + sum(team_score == opp_score),
-                  'goal_diff' = sum(team_score - opp_score),
-                  'goals_scored' = sum(team_score),
-                  'goals_allowed' = sum(opp_score)) %>% 
-        ungroup() %>% 
-        arrange(group, desc(points), desc(goal_diff), desc(goals_scored)) %>% 
-        group_by(group) %>% 
-        mutate('place' = 1:n()) %>% 
-        ungroup() %>% 
-        pull(team)
-      
-      ix <- map_dbl(1:2, ~which(group_standings$team == tiebreak_order[.x]))
-      group_standings$place[3:4] <- ix
-    }
-    
     df_final <- bind_rows(df_final, group_standings)
   }
+  
   
   return(df_final)
 }

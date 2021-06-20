@@ -86,7 +86,7 @@ third_place <-
                      T ~ as.character(goal_diff)
                      )) %>% 
   group_by(points, goal_diff_chr) %>% 
-  summarise('pct' = n()/n_sims) %>% 
+  summarise('pct' = n()/max(sim_id)) %>% 
   ungroup() 
 
 ggplot(third_place, aes(x = points, y = pct, fill = fct_relevel(goal_diff_chr, '< -3', '-3', '-2', '-1', '0', '1', '2', '3', '> 3'))) +

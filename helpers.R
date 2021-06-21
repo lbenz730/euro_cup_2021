@@ -112,14 +112,15 @@ group_tiebreak <- function(standings, df_results) {
       if(group_standings$points[1] == group_standings$points[3]) {
         tiebreak_order <- 
           group_results %>% 
+          inner_join(group_standings %>% select(team, place), by = 'team') %>% 
           filter(team %in% group_standings$team[1:3], opp %in% group_standings$team[1:3]) %>% 
-          group_by(group, team) %>% 
+          group_by(group, team, place) %>% 
           summarise('points' = 3 * sum(team_score > opp_score) + sum(team_score == opp_score),
                     'goal_diff' = sum(team_score - opp_score),
                     'goals_scored' = sum(team_score),
                     'goals_allowed' = sum(opp_score)) %>% 
           ungroup() %>% 
-          arrange(group, desc(points), desc(goal_diff), desc(goals_scored)) %>% 
+          arrange(group, desc(points), desc(goal_diff), desc(goals_scored), place) %>% 
           group_by(group) %>% 
           mutate('place' = 1:n()) %>% 
           ungroup() %>% 
@@ -132,14 +133,15 @@ group_tiebreak <- function(standings, df_results) {
          (group_standings$points[1] == group_standings$points[2])) {
         tiebreak_order <- 
           group_results %>% 
+          inner_join(group_standings %>% select(team, place), by = 'team') %>% 
           filter(team %in% group_standings$team[1:2], opp %in% group_standings$team[1:2]) %>% 
-          group_by(group, team) %>% 
+          group_by(group, team, place) %>% 
           summarise('points' = 3 * sum(team_score > opp_score) + sum(team_score == opp_score),
                     'goal_diff' = sum(team_score - opp_score),
                     'goals_scored' = sum(team_score),
                     'goals_allowed' = sum(opp_score)) %>% 
           ungroup() %>% 
-          arrange(group, desc(points), desc(goal_diff), desc(goals_scored)) %>% 
+          arrange(group, desc(points), desc(goal_diff), desc(goals_scored), place) %>% 
           group_by(group) %>% 
           mutate('place' = 1:n()) %>% 
           ungroup() %>% 
@@ -172,14 +174,15 @@ group_tiebreak <- function(standings, df_results) {
          (group_standings$points[2] == group_standings$points[3])) {
         tiebreak_order <- 
           group_results %>% 
+          inner_join(group_standings %>% select(team, place), by = 'team') %>% 
           filter(team %in% group_standings$team[2:3], opp %in% group_standings$team[2:3]) %>% 
-          group_by(group, team) %>% 
+          group_by(group, team, place) %>% 
           summarise('points' = 3 * sum(team_score > opp_score) + sum(team_score == opp_score),
                     'goal_diff' = sum(team_score - opp_score),
                     'goals_scored' = sum(team_score),
                     'goals_allowed' = sum(opp_score)) %>% 
           ungroup() %>% 
-          arrange(group, desc(points), desc(goal_diff), desc(goals_scored)) %>% 
+          arrange(group, desc(points), desc(goal_diff), desc(goals_scored), place) %>% 
           group_by(group) %>% 
           mutate('place' = 1:n()) %>% 
           ungroup() %>% 
@@ -192,14 +195,15 @@ group_tiebreak <- function(standings, df_results) {
          (group_standings$points[3] == group_standings$points[4])) {
         tiebreak_order <- 
           group_results %>% 
+          inner_join(group_standings %>% select(team, place), by = 'team') %>% 
           filter(team %in% group_standings$team[3:4], opp %in% group_standings$team[3:4]) %>% 
-          group_by(group, team) %>% 
+          group_by(group, team, place) %>% 
           summarise('points' = 3 * sum(team_score > opp_score) + sum(team_score == opp_score),
                     'goal_diff' = sum(team_score - opp_score),
                     'goals_scored' = sum(team_score),
                     'goals_allowed' = sum(opp_score)) %>% 
           ungroup() %>% 
-          arrange(group, desc(points), desc(goal_diff), desc(goals_scored)) %>% 
+          arrange(group, desc(points), desc(goal_diff), desc(goals_scored), place) %>% 
           group_by(group) %>% 
           mutate('place' = 1:n()) %>% 
           ungroup() %>% 

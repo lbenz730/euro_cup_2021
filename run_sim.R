@@ -7,7 +7,7 @@ plan(multiprocess(workers = parallel::detectCores()-1))
 source('helpers.R')
 
 ### Simulation Parameters
-n_sims <- 10000
+n_sims <- 100
 set.seed(12345)
 run_date <- case_when(lubridate::hour(Sys.time()) <= 9 ~as.Date(Sys.Date()),
                       T ~ as.Date(Sys.Date() + 1))
@@ -27,20 +27,23 @@ schedule <-
 schedule <- adorn_xg(schedule)
 
 ### Simulate Group Stage
-df_group_stage <- filter(schedule, !is.na(group))
-dfs_group_stage <- map(1:n_sims, ~df_group_stage)
-group_stage_results <- future_map(dfs_group_stage, sim_group_stage)
-
-### Knockout Round
-knockout_brackets <- future_map(group_stage_results, build_knockout_bracket)
-
+if(any(is.na(schedule$team1_score[1:36]))) {
+  df_group_stage <- filter(schedule, !is.na(group))
+  dfs_group_stage <- map(1:n_sims, ~df_group_stage)
+  group_stage_results <- future_map(dfs_group_stage, sim_group_stage)
+  
+  ### Knockout Round
+  knockout_brackets <- future_map(group_stage_results, build_knockout_bracket)
+}  else {
+  knockout_brackets <- future_map(1:n_sims, ~filter(schedule,  str_detect(ko_round, 'R16'))) 
+}
 ### R16
 knockout_brackets <- 
   future_map(knockout_brackets, ~{
     schedule %>% 
       filter(str_detect(ko_round, 'R16')) %>% 
-      mutate('team1' = .x$team1,
-             'team2' = .x$team2) %>% 
+      mutate('team1' = ifelse(is.na(.$team1), .x$team1, .$team1),
+             'team2' = ifelse(is.na(.$team2), .x$team2, .$team2)) %>% 
       select(-lambda_1, -lambda_2) %>% 
       adorn_xg(.)
   })

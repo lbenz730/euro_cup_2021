@@ -7,7 +7,7 @@ plan(multiprocess(workers = parallel::detectCores()-1))
 source('helpers.R')
 
 ### Simulation Parameters
-n_sims <- 100
+n_sims <- 10000
 set.seed(12345)
 run_date <- case_when(lubridate::hour(Sys.time()) <= 9 ~as.Date(Sys.Date()),
                       T ~ as.Date(Sys.Date() + 1))
@@ -21,7 +21,7 @@ mu <- mean(posterior$mu)
 ### Read in Ratings and Schedule
 df_ratings <- read_csv('predictions/ratings.csv')
 schedule <- 
-  read_csv('data/schedule.csv')
+  read_csv('data/schedule.csv') 
 
 ### Expected Score for Each Game
 schedule <- adorn_xg(schedule)

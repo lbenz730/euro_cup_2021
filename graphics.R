@@ -89,15 +89,14 @@ third_place <-
   summarise('pct' = n()/max(sim_id)) %>% 
   ungroup() 
 
-ggplot(third_place, aes(x = points, y = pct, fill = fct_relevel(goal_diff_chr, '< -3', '-3', '-2', '-1', '0', '1', '2', '3', '> 3'))) +
+ggplot(third_place, aes(x = as.character(points), y = pct, fill = fct_relevel(goal_diff_chr, '< -3', '-3', '-2', '-1', '0', '1', '2', '3', '> 3'))) +
   geom_col(color = 'black')  + 
   labs(x = 'Points',
        y = 'Frequency',
        title = 'Distribution of Points + Goal Differential\nNeeded to Advance as 3rd Place Team',
        fill = 'Goal Differential') +
   theme(legend.position = 'bottom') + 
-  scale_y_continuous(labels = scales::percent) +
-  guides(fill = guide_legend(nrow=2, byrow=TRUE))
+  scale_y_continuous(labels = scales::percent)
 ggsave('figures/thrid_place.png', height = 9/1.2, width = 16/1.2)
 
 

@@ -345,3 +345,14 @@ match_probs <- function(lambda_1, lambda_2) {
   loss_prob <- sum(score_matrix[upper.tri(score_matrix)])
   return(list('win' = win_prob, 'draw' = tie_prob, 'loss' = loss_prob))
 }
+
+
+match_probs_ko <- function(lambda_1, lambda_2) {
+  regulation <- match_probs(lambda_1, lambda_2)
+  extra_time <- match_probs(lambda_1/3, lambda_2/3)
+  
+  win <- regulation$win + regulation$draw * extra_time$win + 0.5 * regulation$draw * extra_time$draw 
+  loss <- regulation$loss + regulation$draw * extra_time$loss + 0.5 * regulation$draw * extra_time$draw 
+
+  return(list('win_ko' = win, 'loss_ko' = loss))
+}

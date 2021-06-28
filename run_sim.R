@@ -27,8 +27,8 @@ schedule <-
 schedule <- adorn_xg(schedule)
 
 ### Simulate Group Stage
+df_group_stage <- filter(schedule, !is.na(group))
 if(any(is.na(schedule$team1_score[1:36]))) {
-  df_group_stage <- filter(schedule, !is.na(group))
   dfs_group_stage <- map(1:n_sims, ~df_group_stage)
   group_stage_results <- future_map(dfs_group_stage, sim_group_stage)
   
@@ -36,6 +36,8 @@ if(any(is.na(schedule$team1_score[1:36]))) {
   knockout_brackets <- future_map(group_stage_results, build_knockout_bracket)
 }  else {
   knockout_brackets <- future_map(1:n_sims, ~filter(schedule,  str_detect(ko_round, 'R16'))) 
+  gsr <- sim_group_stage(df_group_stage)
+  group_stage_results <- map(1:n_sims, ~gsr)
 }
 ### R16
 knockout_brackets <- 

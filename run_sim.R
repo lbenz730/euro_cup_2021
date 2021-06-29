@@ -21,8 +21,12 @@ mu <- mean(posterior$mu)
 ### Read in Ratings and Schedule
 df_ratings <- read_csv('predictions/ratings.csv')
 schedule <- 
-  read_csv('data/schedule.csv') 
-
+  read_csv('data/schedule.csv') %>% 
+  mutate('team1_score' = ifelse(date >= run_date, NA, team1_score),
+         'team2_score' = ifelse(date >= run_date, NA, team2_score)) %>% 
+  mutate('team1_score' = case_when(is.na(shootout_winner) ~ team1_score,
+                                   shootout_winner == team1 ~ 0.1 + team1_score,
+                                   shootout_winner == team2 ~ -0.1 + team1_score))
 ### Expected Score for Each Game
 schedule <- adorn_xg(schedule)
 
@@ -123,13 +127,13 @@ history <-
   arrange(date)
 write_csv(history, 'predictions/history.csv')
 
-### Third Place Tracking
-third_place <- 
-  map2_dfr(group_stage_results, 1:n_sims, ~mutate(.x, 'sim_id' = .y)) %>% 
-  filter(place == 3) %>% 
-  group_by(sim_id) %>% 
-  arrange(desc(points), desc(goal_diff), desc(goals_scored), desc(progress)) %>% 
-  ungroup()
-
-write_csv(third_place, 'predictions/third_place.csv')
+# ### Third Place Tracking
+# third_place <- 
+#   map2_dfr(group_stage_results, 1:n_sims, ~mutate(.x, 'sim_id' = .y)) %>% 
+#   filter(place == 3) %>% 
+#   group_by(sim_id) %>% 
+#   arrange(desc(points), desc(goal_diff), desc(goals_scored), desc(progress)) %>% 
+#   ungroup()
+# 
+# write_csv(third_place, 'predictions/third_place.csv')
 

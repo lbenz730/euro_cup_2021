@@ -128,7 +128,7 @@ round <- 'r16'
 rounds <- names(df_stats)[9:which(names(df_stats) == round)]
 
 df <- 
-  df_stats[df_stats[[round]] > 0, ] %>% 
+  df_stats[df_stats[[round]] > 0 & df_stats$champ > 0, ] %>% 
   select(-mean_pts, -mean_gd, -any_of(rounds))
 
 table <- make_table('all')

@@ -75,28 +75,28 @@ ggplot(history, aes(x = date, y = champ)) +
 
 ggsave('figures/champ.png', height = 12/1.2, width = 16/1.2)
 
-
-third_place <- 
-  read_csv('predictions/third_place.csv') %>% 
-  group_by(sim_id) %>% 
-  slice(4) %>% 
-  mutate('goal_diff_chr' = 
-           case_when(goal_diff <= -4 ~ '< -3',
-                     goal_diff >= 4 ~ '> 3',
-                     T ~ as.character(goal_diff)
-                     )) %>% 
-  group_by(points, goal_diff_chr) %>% 
-  summarise('pct' = n()/max(sim_id)) %>% 
-  ungroup() 
-
-ggplot(third_place, aes(x = as.character(points), y = pct, fill = fct_relevel(goal_diff_chr, '< -3', '-3', '-2', '-1', '0', '1', '2', '3', '> 3'))) +
-  geom_col(color = 'black')  + 
-  labs(x = 'Points',
-       y = 'Frequency',
-       title = 'Distribution of Points + Goal Differential\nNeeded to Advance as 3rd Place Team',
-       fill = 'Goal Differential') +
-  theme(legend.position = 'bottom') + 
-  scale_y_continuous(labels = scales::percent)
-ggsave('figures/thrid_place.png', height = 9/1.2, width = 16/1.2)
-
-
+# 
+# third_place <- 
+#   read_csv('predictions/third_place.csv') %>% 
+#   group_by(sim_id) %>% 
+#   slice(4) %>% 
+#   mutate('goal_diff_chr' = 
+#            case_when(goal_diff <= -4 ~ '< -3',
+#                      goal_diff >= 4 ~ '> 3',
+#                      T ~ as.character(goal_diff)
+#                      )) %>% 
+#   group_by(points, goal_diff_chr) %>% 
+#   summarise('pct' = n()/max(sim_id)) %>% 
+#   ungroup() 
+# 
+# ggplot(third_place, aes(x = as.character(points), y = pct, fill = fct_relevel(goal_diff_chr, '< -3', '-3', '-2', '-1', '0', '1', '2', '3', '> 3'))) +
+#   geom_col(color = 'black')  + 
+#   labs(x = 'Points',
+#        y = 'Frequency',
+#        title = 'Distribution of Points + Goal Differential\nNeeded to Advance as 3rd Place Team',
+#        fill = 'Goal Differential') +
+#   theme(legend.position = 'bottom') + 
+#   scale_y_continuous(labels = scales::percent)
+# ggsave('figures/thrid_place.png', height = 9/1.2, width = 16/1.2)
+# 
+# 

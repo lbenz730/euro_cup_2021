@@ -41,7 +41,8 @@ scores <- map_dfr(seq.Date(as.Date('2021-06-11'), Sys.Date(), 1), get_scores)
 ### Update Scores
 schedule <- 
   schedule %>% 
-  select(-contains('score')) %>% 
+  select(-contains('score'),
+         -contains('shootout_winner')) %>% 
   left_join(scores, by = c("date", "team1", "team2"))
 
 ### Save Results

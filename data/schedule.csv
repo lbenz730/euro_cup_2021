@@ -1,52 +1,52 @@
-date,team1,team2,location,group,ko_round,shootout_winner.x,team1_score,team2_score,shootout_winner.y
-2021-06-11,Italy,Turkey,Italy,A,NA,NA,3,0,NA
-2021-06-12,Wales,Switzerland,Azerbaijan,A,NA,NA,1,1,NA
-2021-06-16,Turkey,Wales,Azerbaijan,A,NA,NA,0,2,NA
-2021-06-16,Italy,Switzerland,Italy,A,NA,NA,3,0,NA
-2021-06-20,Switzerland,Turkey,Azerbaijan,A,NA,NA,3,1,NA
-2021-06-20,Italy,Wales,Italy,A,NA,NA,1,0,NA
-2021-06-12,Denmark,Finland,Denmark,B,NA,NA,0,1,NA
-2021-06-12,Russia,Belgium,Russia,B,NA,NA,0,3,NA
-2021-06-16,Russia,Finland,Russia,B,NA,NA,1,0,NA
-2021-06-17,Denmark,Belgium,Denmark,B,NA,NA,1,2,NA
-2021-06-21,Denmark,Russia,Denmark,B,NA,NA,4,1,NA
-2021-06-21,Finland,Belgium,Russia,B,NA,NA,0,2,NA
-2021-06-13,Austria,North Macedonia,Romania,C,NA,NA,3,1,NA
-2021-06-13,Netherlands,Ukraine,Netherlands,C,NA,NA,3,2,NA
-2021-06-17,Ukraine,North Macedonia,Romania,C,NA,NA,2,1,NA
-2021-06-17,Netherlands,Austria,Netherlands,C,NA,NA,2,0,NA
-2021-06-21,Netherlands,North Macedonia,Netherlands,C,NA,NA,3,0,NA
-2021-06-21,Ukraine,Austria,Romania,C,NA,NA,0,1,NA
-2021-06-13,England,Croatia,England,D,NA,NA,1,0,NA
-2021-06-14,Scotland,Czech Republic,Scotland,D,NA,NA,0,2,NA
-2021-06-18,Croatia,Czech Republic,Scotland,D,NA,NA,1,1,NA
-2021-06-18,England,Scotland,England,D,NA,NA,0,0,NA
-2021-06-22,Scotland,Croatia,Scotland,D,NA,NA,1,3,NA
-2021-06-22,England,Czech Republic,England,D,NA,NA,1,0,NA
-2021-06-14,Poland,Slovakia,Russia,E,NA,NA,1,2,NA
-2021-06-14,Spain,Sweden,Spain,E,NA,NA,0,0,NA
-2021-06-18,Sweden,Slovakia,Russia,E,NA,NA,1,0,NA
-2021-06-19,Spain,Poland,Spain,E,NA,NA,1,1,NA
-2021-06-23,Slovakia,Spain,Spain,E,NA,NA,0,5,NA
-2021-06-23,Sweden,Poland,Russia,E,NA,NA,3,2,NA
-2021-06-15,Hungary,Portugal,Hungary,F,NA,NA,0,3,NA
-2021-06-15,France,Germany,Germany,F,NA,NA,1,0,NA
-2021-06-19,Hungary,France,Hungary,F,NA,NA,1,1,NA
-2021-06-19,Portugal,Germany,Germany,F,NA,NA,2,4,NA
-2021-06-23,Portugal,France,Hungary,F,NA,NA,2,2,NA
-2021-06-23,Germany,Hungary,Germany,F,NA,NA,2,2,NA
-2021-06-27,Belgium,Portugal,Spain,NA,R16 1,NA,1,0,NA
-2021-06-26,Austria,Italy,England,NA,R16 2,NA,1,2,NA
-2021-06-28,France,Switzerland,Romania,NA,R16 3,Switzerland,3,3,Switzerland
-2021-06-28,Croatia,Spain,Denmark,NA,R16 4,NA,3,5,NA
-2021-06-29,Sweden,Ukraine,Scotland,NA,R16 5,NA,NA,NA,NA
-2021-06-29,England,Germany,England,NA,R16 6,NA,NA,NA,NA
-2021-06-27,Netherlands,Czech Republic,Hungary,NA,R16 7,NA,0,2,NA
-2021-06-26,Wales,Denmark,Netherlands,NA,R16 8,NA,0,4,NA
-2021-07-02,NA,NA,Germany,NA,QF 1,NA,NA,NA,NA
-2021-07-02,NA,NA,Russia,NA,QF 2,NA,NA,NA,NA
-2021-07-03,NA,NA,Italy,NA,QF 3,NA,NA,NA,NA
-2021-07-03,NA,NA,Azerbaijan,NA,QF 4,NA,NA,NA,NA
-2021-07-06,NA,NA,England,NA,SF 1,NA,NA,NA,NA
-2021-07-07,NA,NA,England,NA,SF 2,NA,NA,NA,NA
-2021-07-11,NA,NA,England,NA,FINAL,NA,NA,NA,NA
+date,team1,team2,location,group,ko_round,team1_score,team2_score,shootout_winner
+2021-06-11,Italy,Turkey,Italy,A,NA,3,0,NA
+2021-06-12,Wales,Switzerland,Azerbaijan,A,NA,1,1,NA
+2021-06-16,Turkey,Wales,Azerbaijan,A,NA,0,2,NA
+2021-06-16,Italy,Switzerland,Italy,A,NA,3,0,NA
+2021-06-20,Switzerland,Turkey,Azerbaijan,A,NA,3,1,NA
+2021-06-20,Italy,Wales,Italy,A,NA,1,0,NA
+2021-06-12,Denmark,Finland,Denmark,B,NA,0,1,NA
+2021-06-12,Russia,Belgium,Russia,B,NA,0,3,NA
+2021-06-16,Russia,Finland,Russia,B,NA,1,0,NA
+2021-06-17,Denmark,Belgium,Denmark,B,NA,1,2,NA
+2021-06-21,Denmark,Russia,Denmark,B,NA,4,1,NA
+2021-06-21,Finland,Belgium,Russia,B,NA,0,2,NA
+2021-06-13,Austria,North Macedonia,Romania,C,NA,3,1,NA
+2021-06-13,Netherlands,Ukraine,Netherlands,C,NA,3,2,NA
+2021-06-17,Ukraine,North Macedonia,Romania,C,NA,2,1,NA
+2021-06-17,Netherlands,Austria,Netherlands,C,NA,2,0,NA
+2021-06-21,Netherlands,North Macedonia,Netherlands,C,NA,3,0,NA
+2021-06-21,Ukraine,Austria,Romania,C,NA,0,1,NA
+2021-06-13,England,Croatia,England,D,NA,1,0,NA
+2021-06-14,Scotland,Czech Republic,Scotland,D,NA,0,2,NA
+2021-06-18,Croatia,Czech Republic,Scotland,D,NA,1,1,NA
+2021-06-18,England,Scotland,England,D,NA,0,0,NA
+2021-06-22,Scotland,Croatia,Scotland,D,NA,1,3,NA
+2021-06-22,England,Czech Republic,England,D,NA,1,0,NA
+2021-06-14,Poland,Slovakia,Russia,E,NA,1,2,NA
+2021-06-14,Spain,Sweden,Spain,E,NA,0,0,NA
+2021-06-18,Sweden,Slovakia,Russia,E,NA,1,0,NA
+2021-06-19,Spain,Poland,Spain,E,NA,1,1,NA
+2021-06-23,Slovakia,Spain,Spain,E,NA,0,5,NA
+2021-06-23,Sweden,Poland,Russia,E,NA,3,2,NA
+2021-06-15,Hungary,Portugal,Hungary,F,NA,0,3,NA
+2021-06-15,France,Germany,Germany,F,NA,1,0,NA
+2021-06-19,Hungary,France,Hungary,F,NA,1,1,NA
+2021-06-19,Portugal,Germany,Germany,F,NA,2,4,NA
+2021-06-23,Portugal,France,Hungary,F,NA,2,2,NA
+2021-06-23,Germany,Hungary,Germany,F,NA,2,2,NA
+2021-06-27,Belgium,Portugal,Spain,NA,R16 1,1,0,NA
+2021-06-26,Austria,Italy,England,NA,R16 2,1,2,NA
+2021-06-28,France,Switzerland,Romania,NA,R16 3,3,3,Switzerland
+2021-06-28,Croatia,Spain,Denmark,NA,R16 4,3,5,NA
+2021-06-29,Sweden,Ukraine,Scotland,NA,R16 5,NA,NA,NA
+2021-06-29,England,Germany,England,NA,R16 6,NA,NA,NA
+2021-06-27,Netherlands,Czech Republic,Hungary,NA,R16 7,0,2,NA
+2021-06-26,Wales,Denmark,Netherlands,NA,R16 8,0,4,NA
+2021-07-02,Belgium,Italy,Germany,NA,QF 1,NA,NA,NA
+2021-07-02,Switzerland,Spain,Russia,NA,QF 2,NA,NA,NA
+2021-07-03,NA,NA,Italy,NA,QF 3,NA,NA,NA
+2021-07-03,Czech Republic,Denmark,Azerbaijan,NA,QF 4,NA,NA,NA
+2021-07-06,NA,NA,England,NA,SF 1,NA,NA,NA
+2021-07-07,NA,NA,England,NA,SF 2,NA,NA,NA
+2021-07-11,NA,NA,England,NA,FINAL,NA,NA,NA

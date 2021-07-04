@@ -328,10 +328,11 @@ sim_ko_round <- function(df) {
         goals_1[tie_ix] <- goals_1[tie_ix] + sample(c(0.1, -0.1), size = sum(tie_ix), replace = T)
       }
     }
+    df$team1_score[is.na(df$team1_score)] <- goals_1
+    df$team2_score[is.na(df$team2_score)] <- goals_2
   }  
   
-  df$team1_score[is.na(df$team1_score)] <- goals_1
-  df$team2_score[is.na(df$team2_score)] <- goals_2
+
   
   return(df)
 }

@@ -10,7 +10,7 @@ source('helpers.R')
 n_sims <- 10000
 set.seed(12345)
 run_date <- case_when(lubridate::hour(Sys.time()) <= 9 ~as.Date(Sys.Date()),
-                      T ~ as.Date(Sys.Date() + 1))
+                      T ~ as.Date(Sys.Date() ))
 
 ### Coefficients
 posterior <- read_rds('model_objects/posterior.rds')

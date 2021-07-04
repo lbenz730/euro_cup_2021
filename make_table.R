@@ -122,34 +122,35 @@ make_table <- function(Group = 'all') {
 }
 
 
-
-
-round <- 'r16'
-rounds <- names(df_stats)[9:which(names(df_stats) == round)]
-
-df <- 
-  df_stats[df_stats[[round]] > 0 & df_stats$champ > 0, ] %>% 
-  select(-mean_pts, -mean_gd, -any_of(rounds))
-
 table <- make_table('all')
 gtsave(table, filename = 'figures/euro_2021.png')
 map(LETTERS[1:6], ~gtsave(make_table(Group = .x), filename = paste0('figures/', .x, '.png')))
 
 
 
+round <- 'sf'
+rounds <- names(df_stats)[9:which(names(df_stats) == round)]
+
+df <- 
+  df_stats[df_stats[[round]] > 0 & df_stats$champ > 0, ] %>% 
+  select(-mean_pts, -mean_gd, -any_of(rounds))
+
+
+
+
 
 ko_table <-
-df %>% 
+  df %>% 
   gt() %>% 
   
   ### Round Numbers
   fmt_number(columns = vars(alpha, delta, net_rating), decimals = 2, sep_mark = '') %>% 
-  fmt_percent(columns = vars(qf, sf, finals, champ), decimals = 0, sep_mark = '') %>% 
+  fmt_percent(columns = vars(finals, champ), decimals = 0, sep_mark = '') %>% 
   
   ### Align Columns
   cols_align(align = "center", columns = T) %>% 
   
-  data_color(columns = vars(qf, sf, finals, champ),
+  data_color(columns = vars(sf, finals, champ),
              colors = scales::col_numeric(palette = ggsci::rgb_material('amber', n = 100), domain = c(0, 1))) %>% 
   data_color(columns = vars(alpha),
              colors = scales::col_numeric(palette = ggsci::rgb_material('amber', n = 100), domain = range(df_stats$alpha))) %>% 
@@ -189,7 +190,7 @@ df %>%
   ) %>% 
   
   tab_spanner(label = 'Ratings', columns = c('alpha', 'delta', 'net_rating')) %>% 
-  tab_spanner(label = 'Knockout Round', columns = c('qf', 'sf',  'finals', 'champ')) %>% 
+  tab_spanner(label = 'Knockout Round', columns = c('finals', 'champ')) %>% 
   
   ### Logos
   text_transform(
@@ -208,8 +209,8 @@ df %>%
     delta = 'Defense',
     net_rating = 'Overall',
     # r16 = 'R16',
-    qf = 'QF',
-    sf = 'SF',
+    # qf = 'QF',
+    # sf = 'SF',
     finals = 'Finals',
     champ = 'Champ'
     

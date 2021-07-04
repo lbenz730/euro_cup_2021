@@ -12,6 +12,8 @@ set.seed(12345)
 run_date <- case_when(lubridate::hour(Sys.time()) <= 9 ~as.Date(Sys.Date()),
                       T ~ as.Date(Sys.Date() ))
 
+run_date <- Sys.Date()
+
 ### Coefficients
 posterior <- read_rds('model_objects/posterior.rds')
 home_field <- mean(posterior$home_field)
@@ -62,8 +64,8 @@ knockout_brackets <-
     winners <- ifelse(.x$team1_score > .x$team2_score, .x$team1, .x$team2)
     schedule %>% 
       filter(str_detect(ko_round, 'QF')) %>% 
-      mutate('team1' = winners[c(1,3,5,7)],
-             'team2' = winners[c(2,4,6,8)]) %>% 
+      mutate('team1' = map_chr(1:nrow(.), ~ifelse(is.na(.data$team1[.x]), winners[2 * .x - 1], .data$team1[.x])),
+             'team2' = map_chr(1:nrow(.), ~ifelse(is.na(.data$team2[.x]), winners[2 * .x], .data$team2[.x]))) %>% 
       select(-lambda_1, -lambda_2) %>% 
       adorn_xg(.)
   })

@@ -150,7 +150,7 @@ ko_table <-
   ### Align Columns
   cols_align(align = "center", columns = T) %>% 
   
-  data_color(columns = vars(sf, finals, champ),
+  data_color(columns = vars(finals, champ),
              colors = scales::col_numeric(palette = ggsci::rgb_material('amber', n = 100), domain = c(0, 1))) %>% 
   data_color(columns = vars(alpha),
              colors = scales::col_numeric(palette = ggsci::rgb_material('amber', n = 100), domain = range(df_stats$alpha))) %>% 
